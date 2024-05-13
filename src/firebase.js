@@ -1,4 +1,3 @@
-
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -9,9 +8,8 @@ const firebaseConfig = {
   projectId: "messanger-c886a",
   storageBucket: "messanger-c886a.appspot.com",
   messagingSenderId: "70507298988",
-  appId: "1:70507298988:web:2308da8ce1f60a87939f09"
+  appId: "1:70507298988:web:2308da8ce1f60a87939f09",
 };
-
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);

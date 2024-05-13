@@ -38,7 +38,7 @@ const Login = () => {
         error: null,
         loading: false,
       });
-      navigate('/');
+      navigate("/");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
@@ -72,7 +72,9 @@ const Login = () => {
           </button>
         </div>
       </form>
-      <span>Please register your account ? <Link to='/register'>Register</Link></span>
+      <span>
+        Please register your account ? <Link to="/register">Register</Link>
+      </span>
     </section>
   );
 };

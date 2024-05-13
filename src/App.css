@@ -6,14 +6,13 @@
 }
 
 :root {
-  --color-1: #BACD92;
-  --color-2: white;
-  --color-3: #BACD92;
-  --color-4: #9DBC98;
+  --color-1: #00a884;
+  --color-2: #524c42;
+  --color-3: #12941f;
+  --color-4: #00a884;
   --color-5: #eb4034;
-  --color-6: #a192cd;
+  --color-6: #00a884;
 }
-
 /* Navbar */
 nav {
   display: flex;

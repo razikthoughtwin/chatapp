@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { db, auth, storage } from "../firebase";
-import Img from "../image1.jpg";
-import Message from '../components/Message'
-import MessageForm from '../components/MessageForm'
+import Img from "../img1.png";
+import Message from "../components/Message";
+import MessageForm from "../components/MessageForm";
 
 import {
   collection,
@@ -17,10 +17,8 @@ import {
   getDoc,
   updateDoc,
 } from "firebase/firestore";
-// import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import User from "../components/User";
-import { useHref } from "react-router-dom";
-
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -77,30 +75,44 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user2 = chat.uid;
+    if (text !== "" || img !== "") {
+      const user2 = chat.uid;
 
-    const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+      const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
 
+      let url;
+      if (img) {
+        const imgRef = ref(
+          storage,
+          `images/${new Date().getTime()} - ${img.name}`
+        );
+        const snap = await uploadBytes(imgRef, img);
+        const dlUrl = await getDownloadURL(ref(storage, snap.ref.fullPath));
+        url = dlUrl;
+      }
 
-    await addDoc(collection(db, "messages", id, "chat"), {
-      text,
-      from: user1,
-      to: user2,
-      createdAt: Timestamp.fromDate(new Date()),
-      // media: url || "",
-    });
+      await addDoc(collection(db, "messages", id, "chat"), {
+        text,
+        from: user1,
+        to: user2,
+        createdAt: Timestamp.fromDate(new Date()),
+        media: url || "",
+      });
 
-    await setDoc(doc(db, "lastMsg", id), {
-      text,
-      from: user1,
-      to: user2,
-      createdAt: Timestamp.fromDate(new Date()),
-      // media: url || "",
-      unread: true,
-    });
+      await setDoc(doc(db, "lastMsg", id), {
+        text,
+        from: user1,
+        to: user2,
+        createdAt: Timestamp.fromDate(new Date()),
+        media: url || "",
+        unread: true,
+      });
 
-    setText("");
-    setImg("");
+      setText("");
+      setImg("");
+    } else {
+      return;
+    }
   };
   return (
     <div className="home_container">
@@ -119,9 +131,8 @@ const Home = () => {
         {chat ? (
           <>
             <div className="messages_user">
-            <img src={Img} alt="avatar" className="avatar" />
+              <img src={Img} alt="avatar" className="avatar" />
               <h3>{chat.name}</h3>
-              
             </div>
             <div className="messages">
               {msgs.length
@@ -146,9 +157,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
-
-
-        

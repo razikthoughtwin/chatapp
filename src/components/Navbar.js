@@ -10,14 +10,14 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
-  console.log(user)
+  console.log(user);
 
   const handleSignout = async () => {
     await updateDoc(doc(db, "users", auth.currentUser.uid), {
       isOnline: false,
     });
     await signOut(auth);
-    navigate('/');
+    navigate("/");
   };
   return (
     <nav>

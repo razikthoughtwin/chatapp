@@ -47,7 +47,7 @@ const Register = () => {
         error: null,
         loading: false,
       });
-      navigate('/');
+      navigate("/");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
@@ -85,10 +85,11 @@ const Register = () => {
           </button>
         </div>
       </form>
-      <span>Already have an account please ? <Link to='/register'>Login</Link></span>
+      <span>
+        Already have an account please ? <Link to="/register">Login</Link>
+      </span>
     </section>
   );
 };
 
 export default Register;
-

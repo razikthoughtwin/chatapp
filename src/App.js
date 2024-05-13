@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter,Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Register from "./pages/Register";
@@ -15,7 +15,7 @@ function App() {
       return <Navigate to="/login" />;
     }
 
-    return children
+    return children;
   };
 
   return (
@@ -23,9 +23,16 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/register" element={<Register/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/" element={<ProtectedRoute><Home/></ProtectedRoute>} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
