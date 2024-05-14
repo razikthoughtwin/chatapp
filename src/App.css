@@ -2,7 +2,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: #527853;
 }
 
 :root {
@@ -263,6 +262,7 @@ section .form {
 .sm_screen {
   display: none;
 }
+
 @media screen and (max-width: 767px) {
   .home_container {
     grid-template-columns: 2fr 3fr;
