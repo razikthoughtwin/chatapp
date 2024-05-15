@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import React, { useState } from "react";
+import { createUserWithEmailAndPassword} from "firebase/auth";
 import { auth, db } from "../firebase";
 import { setDoc, doc, Timestamp } from "firebase/firestore";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [data, setData] = useState({
