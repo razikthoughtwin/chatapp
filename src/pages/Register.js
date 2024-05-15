@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import React, { useEffect, useState } from "react";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { setDoc, doc, Timestamp } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [data, setData] = useState({
@@ -12,6 +12,8 @@ const Register = () => {
     error: null,
     loading: false,
   });
+
+  const [isEmailVerified,setIsEmailVerified]=useState({});
 
   const navigate = useNavigate();
 
@@ -32,7 +34,7 @@ const Register = () => {
         auth,
         email,
         password
-      );
+      )
       await setDoc(doc(db, "users", result.user.uid), {
         uid: result.user.uid,
         name,
@@ -47,12 +49,14 @@ const Register = () => {
         error: null,
         loading: false,
       });
-      navigate("/");
+      
+        navigate('/')
     } catch (err) {
+      console.log("usererror",err)
       setData({ ...data, error: err.message, loading: false });
     }
   };
-  return (
+  return ( 
     <section>
       <h3>Create An Account</h3>
       <form className="form" onSubmit={handleSubmit}>
@@ -88,6 +92,8 @@ const Register = () => {
       <span>
         Already have an account please ? <Link to="/register">Login</Link>
       </span>
+     
+  
     </section>
   );
 };

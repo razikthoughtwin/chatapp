@@ -49,6 +49,11 @@ const User = ({ user1, user, selectUser, chat }) => {
           alt="avatar"
           className="avatar sm_screen"
         />
+        <div
+          style={{marginLeft:"20px"}}
+          className={`hideimage user_status ${user.isOnline ? "online" : "offline"}`}
+        ></div>
+        <h4 className="hideimage">{user.name}</h4>
       </div>
     </>
   );

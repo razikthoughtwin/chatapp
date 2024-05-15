@@ -276,6 +276,9 @@ section .form {
     max-width: 75%;
   }
 }
+.hideimage {
+  display: none;
+}
 
 @media screen and (max-width: 576px) {
   .home_container {
@@ -283,6 +286,9 @@ section .form {
   }
   .user_wrapper {
     display: none;
+  }
+  .hideimage {
+    display: block;
   }
   .sm_container {
     padding: 10px 0px;
