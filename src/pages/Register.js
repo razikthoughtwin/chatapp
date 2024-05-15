@@ -13,8 +13,6 @@ const Register = () => {
     loading: false,
   });
 
-  const [isEmailVerified,setIsEmailVerified]=useState({});
-
   const navigate = useNavigate();
 
   const { name, email, password, error, loading } = data;
